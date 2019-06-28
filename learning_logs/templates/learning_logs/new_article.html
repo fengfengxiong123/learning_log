@@ -1,0 +1,15 @@
+{% extends "learning_logs/base.html" %}
+
+{% block header %}
+	<h2>发起新主题:</h2>
+{% endblock header %}
+
+{% block content %}
+<form action="{% url 'learning_logs:new_article' %}" method='post' class="form">
+	{% csrf_token %}
+	<table class="table">
+	{{form}}	
+	</table>
+	<button name="submit" class="btn btn-primary">发起</button>	
+</form>
+{% endblock content %}

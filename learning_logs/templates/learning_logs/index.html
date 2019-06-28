@@ -1,0 +1,49 @@
+{% extends "learning_logs/base.html" %}
+<!-- extends表明此页面继承自 base.html 文件 -->
+{% block header %}
+<!-- <div class="container">
+<h5>作品列表</h5>
+</div> -->
+{% endblock header %}
+
+{% block content %}	
+
+	<p>
+		<table class="table">
+		{% if articles %}
+		<thead>
+		    <tr>
+		      <th scope="col">文章名</th>
+		      <th scope="col">简介</th>
+		      <th scope="col">发布人</th>
+		      <th scope="col">作者</th>
+		      <th scope="col">状态</th>
+		      <th scope="col">类型</th>
+		      <th scope="col">添加日期</th>
+		    </tr>
+	 	 </thead>
+	 	{% endif %}	
+	 	{% for article in articles %}
+		<tbody>						
+			<tr>
+			  <th scope="row"><a href="{% url 'learning_logs:article' article.id %}">{{ article }}</a></th>
+			  <td>{{article.art_introduction}}</td>
+			  <td>{{article.user_owner}}</td>
+			  <td>{{article.art_author}}</td>
+			  <td>{{article.art_status}}</td>
+			  <td>{{article.art_type}}</td>
+			  <td>{{article.art_add_date}}</td>
+			</tr>										
+		</tbody>
+		{% empty %}
+			<li>没有文章</li>
+		{% endfor %}	
+	</table>			
+	</p>
+
+<h3>
+	<a href="{% url 'learning_logs:new_article' %}">发布</a>
+</h3>
+
+
+{% endblock content %}

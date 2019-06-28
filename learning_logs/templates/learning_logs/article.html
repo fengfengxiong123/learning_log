@@ -1,0 +1,60 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block header %}
+
+<h2 class="text-center">{{ article }}</h2>
+<p class="small text-center">	
+	{% if article.user_owner == request.user %}
+	<a href="{% url 'learning_logs:edit_art_content' article.id %}">修改</a>	
+	{% endif %}	
+</p>
+{% endblock header %}
+
+{% block content %}	
+
+<div class="panel panel-default">
+	<div class="panel-body">
+		<p>发布时间：
+			{{ article.art_add_date|date:'Y m d H:i' }}
+			{% if article.user_owner == request.user %}
+			<small>
+				<a href="{% url 'learning_logs:new_chapter' article.id%}">更新</a>					
+			</small>				
+			{% endif %}
+		</p>
+	</div>		
+	{% for i in current_page_content %}
+		<p>
+		<a href="{% url 'learning_logs:look_chapter' i.id %}">
+			章名：{{i.chapter_name}}
+		</a><small> 更新：{{i.chapter_add_date|date:'y m d H:i'}}</small>
+		{% if article.user_owner == request.user %}
+			<small>
+				<a href="{% url 'learning_logs:edit_chapter' article.id i.id%}">修改</a>
+			</small>
+		{% endif %}
+		</p>
+	{% endfor %}
+</div> 
+	<nav aria-label="Page navigation example">
+		<ul class="pagination">
+			{% if current_page_content.has_previous %}
+			<li class="page-item"><a class="page-link" href="?current_page_content.previous_page_number" aria-label="Previous"><span aria-hidden="true">上一页</span></a></li>
+			{% else %}
+			<li class="disabled"><a class="page-link" href="" aria-label="Next"><span aria-hidden="true">上一页</span></a></li>
+			{% endif %}
+			
+			{% for page in page_range %}
+			<li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+			{% endfor %}
+
+			{% if current_page_content.has_next%}
+			<li><a class="page-link" href="?page={{current_page_content.next_page_number}}" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>	
+			{% else %}
+			<li class="disabled"><a class="page-link"  href="" aria-label="Next"><span aria-hidden="true">下一页</span></a></li>
+			{% endif %}
+
+		</ul>		
+	</nav>
+	
+{% endblock content %}

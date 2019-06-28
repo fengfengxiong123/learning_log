@@ -1,0 +1,23 @@
+{% extends "learning_logs/base.html" %}
+<div class="container">
+	{% block header %}
+		<div class="page-header">
+			<h2>
+				账号注册
+			</h2>
+		</div>
+	{% endblock header %}
+
+	{% block content %}
+		<div>
+			<form class="form" method="post" action="{% url 'users:register' %}">
+				{% csrf_token %}				
+				<table class="table">	
+				{{form}}	
+				</table>		
+				<button class="btn btn-primary" name="submit" value="{% url 'learning_logs:index' %}" >注册</button>
+				<input type="hidden" name="next" value="/">			
+			</form>
+		</div>
+	{% endblock content %}
+</div>

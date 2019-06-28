@@ -1,0 +1,19 @@
+{% extends "learning_logs/base.html" %}
+{% block header %}
+	<h1>作品列表</h1>
+{% endblock header %}
+{% block content %}
+	{% if error_msg %}
+	    <p>{{ error_msg }}</p>
+	{% endif %}
+
+	{% for article in articles %}
+	  <div>
+	    <a href="{% url 'learning_logs:article' article.id %}">{{ article }}</a>
+	  </div>
+	{% empty %}
+	  <div class="no-post">
+	    没有搜索到符合条件的文章
+	  </div>
+	{% endfor %}
+{% endblock content %}

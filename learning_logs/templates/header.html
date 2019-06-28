@@ -1,0 +1,61 @@
+<!-- 定义导航栏 -->
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    
+    <a class="navbar-brand" href="{% url 'learning_logs:index' %}">书</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <!-- <li class="nav-item active">
+          <a class="nav-link" href="{% url 'learning_logs:index' %}">视创<span class="sr-only">(current)</span></a>
+        </li> -->
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="{% url 'learning_logs:index' %}">音创</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            游创
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">反馈</a>
+        </li> -->
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <form class="form-inline mr-auto my-2 my-lg-0" method="get" action="{% url 'learning_logs:search' %}">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2" type="search" placeholder="搜索" aria-label="Search" name="search_name" required>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+        </form>
+      </ul>
+      <ul class="navbar-nav mr-right">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" >您好, {{ user.username }}.</a>
+          </li>    
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'users:logout' %}">退出</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'users:register' %}">注册</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'users:login' %}">登录</a>
+          </li>
+        {% endif %}
+      </ul>     
+    </div>
+  </nav>
+</div>
