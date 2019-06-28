@@ -7,43 +7,66 @@
 {% endblock header %}
 
 {% block content %}	
+<div class="container">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>
+                    <table class="table">
+                    {% if articles %}
+                    <thead>
+                        <tr>
+                          <th scope="col">文章名</th>
+                          <th scope="col">简介</th>
+                          <!-- <th scope="col">发布人</th> -->
+                          <th scope="col">作者</th>
+                          <!-- <th scope="col">状态</th> -->
+                          <!-- <th scope="col">类型</th> -->
+                          <!-- <th scope="col">添加日期</th> -->
+                        </tr>
+                     </thead>
+                    {% endif %}
+                    {% for article in articles %}
+                    <tbody>
+                        <tr>
+                          <th scope="row"><a href="{% url 'learning_logs:article' article.id %}">{{ article }}</a></th>
+                          <td>{{article.art_introduction}}</td>
+                          <!-- <td>{{article.user_owner}}</td> -->
+                          <td>{{article.art_author}}</td>
+                          <!-- <td>{{article.art_status}}</td> -->
+                          <!-- <td>{{article.art_type}}</td> -->
+                          <!-- <td>{{article.art_add_date}}</td> -->
+                        </tr>
+                    </tbody>
+                    {% empty %}
+                        <li>没有文章</li>
+                    {% endfor %}
+                </table>
+                </p>
+            </div>
+        </div>
+        <div>
+            <h3>
+                <a href="{% url 'learning_logs:new_article' %}">发布</a>
+            </h3>
+        </div>
+</div>
 
-	<p>
-		<table class="table">
-		{% if articles %}
-		<thead>
-		    <tr>
-		      <th scope="col">文章名</th>
-		      <th scope="col">简介</th>
-		      <th scope="col">发布人</th>
-		      <th scope="col">作者</th>
-		      <th scope="col">状态</th>
-		      <th scope="col">类型</th>
-		      <th scope="col">添加日期</th>
-		    </tr>
-	 	 </thead>
-	 	{% endif %}	
-	 	{% for article in articles %}
-		<tbody>						
-			<tr>
-			  <th scope="row"><a href="{% url 'learning_logs:article' article.id %}">{{ article }}</a></th>
-			  <td>{{article.art_introduction}}</td>
-			  <td>{{article.user_owner}}</td>
-			  <td>{{article.art_author}}</td>
-			  <td>{{article.art_status}}</td>
-			  <td>{{article.art_type}}</td>
-			  <td>{{article.art_add_date}}</td>
-			</tr>										
-		</tbody>
-		{% empty %}
-			<li>没有文章</li>
-		{% endfor %}	
-	</table>			
-	</p>
-
-<h3>
-	<a href="{% url 'learning_logs:new_article' %}">发布</a>
-</h3>
-
+<div class="py-3 fixed-bottom bg2-white">
+    <div class="container">
+        <p class="m-0 text-center text-dark">联系方式：359975715@qq.com
+        <script type="text/javascript">
+        if
+            (localStorage.pagecount)
+            {localStorage.pagecount=Number(localStorage.pagecount) +1;}
+        else
+            {localStorage.pagecount=1;}
+            document.write("访问数: " + localStorage.pagecount );
+        </script>
+        </p>
+    </div>
+</div>
+<style type="text/css">
+    .bg2-white{background-color: rgba(255,255,255,0.1);}
+</style>
 
 {% endblock content %}

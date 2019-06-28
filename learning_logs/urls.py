@@ -1,8 +1,10 @@
 """learning_logs URL Configuration
 """
-
+# router.register(r'article', views.ArticleViewSet) #路由地址与接口配置
 from django.urls import path, include,re_path
 from . import views
+
+
 app_name='learning_logs'
 urlpatterns = [    
     path('',views.index,name='index'),
@@ -16,5 +18,7 @@ urlpatterns = [
     re_path(r'^edit_art_content/(?P<article_id>\d+)/$', views.edit_art_content,name='edit_art_content'),
     re_path(r'^new_article/$', views.new_article, name='new_article'), 
     re_path(r'^search/$',views.search,name='search')
+    
+
     ]
 
