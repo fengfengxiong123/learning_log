@@ -1,17 +1,18 @@
 {% extends 'learning_logs/base.html' %}
 
 {% block header %}
-    <p>
-<h5 class="text-center">{{ artcontents.chapter_name }}</h5>
-    </p>
+
 {% endblock header %}
-{% block content %}	
-		
+{% block content %}
 
-				{% autoescape off %}
-			{{artcontents.chapter_content}}
-				{% endautoescape %}
-
+<div class="container">
+    <p>
+    <h5 class="text-center">{{ artcontents.chapter_name }}</h5>
+    </p>
+    {% autoescape off %}
+    {{artcontents.chapter_content}}
+    {% endautoescape %}
+</div>
 <style type="text/css">
 
 	
