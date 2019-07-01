@@ -25,23 +25,6 @@
 {##}
 {#                </p>#}
 {#            </div>#}
-            <div>
-            章列表：
-            </div>
-            {% for i in current_page_content %}
-                <div class="over_window" >
-                    <a href="{% url 'learning_logs:look_chapter' i.id %}">{{i.chapter_name}}</a>
-                    <p>
-                    <small> 更新：{{i.chapter_add_date|date:'y m d H:i'}}</small>
-                    {% if article.user_owner == request.user %}
-                        <small><a href="{% url 'learning_logs:edit_chapter' article.id i.id%}">修改</a></small>
-                    {% endif %}
-                    </p>
-                </div>
-
-            {% endfor %}
-        </div>
-
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 {% if current_page_content.has_previous %}
@@ -62,6 +45,22 @@
 
             </ul>
         </nav>
+            <div>
+            章列表：
+            </div>
+            {% for i in current_page_content %}
+                <div class="over_window" >
+                    <a href="{% url 'learning_logs:look_chapter' i.id %}">{{i.chapter_name}}</a>
+                    <p>
+                    <small> 更新：{{i.chapter_add_date|date:'y m d H:i'}}</small>
+                    {% if article.user_owner == request.user %}
+                        <small><a href="{% url 'learning_logs:edit_chapter' article.id i.id%}">修改</a></small>
+                    {% endif %}
+                    </p>
+                </div>
+
+            {% endfor %}
+        </div>
 </div>
 <style>
 .over_window{
@@ -70,5 +69,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
 </style>
 {% endblock content %}

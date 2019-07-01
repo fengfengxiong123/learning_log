@@ -1,15 +1,21 @@
 {% extends "learning_logs/base.html" %}
 
 {% block header %}
-	<h6>{{article}}</h6>
+
 {% endblock header %}
 
 {% block content %}
-<form action="{% url 'learning_logs:new_chapter' article.id%}" method='post' class="form">
+
+<form action="{% url 'learning_logs:new_chapter' article.id%}" method='post' class="form"  style="width: 96%;margin-left: 2%">
+
+    <h6 style="text-align: center">作品名称：{{article}}</h6>
 	{% csrf_token %}
 	<table class="table">
-	{{form}}	
+     章名：   <button name="submit" class="btn btn-primary" style="float: right">保存本章</button>
+	{{form.chapter_name}}章内容：{{form.chapter_content}}
 	</table>
-	<button name="submit" class="btn btn-primary">发起</button>	
+
+
 </form>
+
 {% endblock content %}

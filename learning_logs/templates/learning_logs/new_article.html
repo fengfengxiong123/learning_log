@@ -1,15 +1,26 @@
 {% extends "learning_logs/base.html" %}
 
 {% block header %}
-	<h2>发起新主题:</h2>
+	<p class="text-center">输入作品相关信息</p>
 {% endblock header %}
 
 {% block content %}
-<form action="{% url 'learning_logs:new_article' %}" method='post' class="form">
-	{% csrf_token %}
-	<table class="table">
-	{{form}}	
-	</table>
-	<button name="submit" class="btn btn-primary">发起</button>	
+
+<form action="{% url 'learning_logs:new_article' %}" method='post' class="form" style="width: 96%;margin: 2%">
+
+        {% csrf_token %}
+        {% for item in form %}
+                <div class="form-group" >
+
+                <input class="form-control" placeholder="{{item.label}}" aria-describedby="error_msg" id="{{item.id_for_label}}" name="{{item.html_name}}" type="{{item.field.widget.input_type}}" />
+
+                {% for error in item.errors %}
+                    <small id="error_msg" class="form-text text-muted">{{error}}</small>
+                {% endfor%}
+
+                </div>
+        {% endfor %}
+        <button name="submit" class="btn btn-primary col-md-12">发起</button>
+
 </form>
 {% endblock content %}
