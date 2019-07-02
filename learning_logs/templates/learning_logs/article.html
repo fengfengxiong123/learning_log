@@ -6,7 +6,7 @@
 <h2 class="text-center">{{ article }}</h2>
 <p class="text-center">
 	{% if article.user_owner == request.user %}
-	<a href="{% url 'learning_logs:edit_art_content' article.id %}">修改</a>
+	<a href="{% url 'learning_logs:edit_art_content' article.id  %}">修改</a>
     <a href="{% url 'learning_logs:new_chapter' article.id%}">更新</a>
 	{% endif %}
 
@@ -44,7 +44,7 @@
         </div>
         {% for i in current_page_content %}
         <div class="over_window" >
-            <a href="{% url 'learning_logs:look_chapter' i.id %}">{{i.chapter_name}}</a>
+            <a href="{% url 'learning_logs:look_chapter' article.id i.id %}">{{i.chapter_name}}</a>
             <p>
             <small> 更新：{{i.chapter_add_date|date:'y m d H:i'}}</small>
             {% if article.user_owner == request.user %}

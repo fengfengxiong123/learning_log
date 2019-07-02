@@ -101,11 +101,14 @@ def new_chapter(request,article_id):
 	context={'form':form,'article':article}
 	return render(request,'learning_logs/new_chapter.html',context)
 
-
-def look_chapter(request,chapter_id):
-	"""查看具体章节"""		
-	artcontents=ArtContent.objects.get(id=chapter_id)	
-	context={'artcontents':artcontents}
+from django.db.models.aggregates import Count
+def look_chapter(request,art_id,chap_id):
+	"""查看具体章节"""
+	artcontents=ArtContent.objects.get(id=chap_id)
+	article=Article.objects.get(id=art_id)
+	allartcontents=ArtContent.objects.annotate(num_article=Count('id'))
+	artcontent_list=list(allartcontents)
+	context={'artcontents':artcontents,'article':article}
 	return render(request,'learning_logs/look_chapter.html',context)
 
 @login_required

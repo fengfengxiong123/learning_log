@@ -12,6 +12,9 @@
     {% autoescape off %}
     {{artcontents.chapter_content}}
     {% endautoescape %}
+    <a href="{% url 'learning_logs:look_chapter' article.id artcontents.id %}">上一章</a>
+
+
 </div>
 <style type="text/css">
 
