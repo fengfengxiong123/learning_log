@@ -7,17 +7,23 @@
 
 <div class="container">
     <p>
-    <h5 class="text-center">{{ artcontents.chapter_name }}</h5>
+    <h5 class="text-center">{{ artcontent.chapter_name }}</h5>
+
+
+
+
     </p>
+    <span>
     {% autoescape off %}
-    {{artcontents.chapter_content}}
+    {{artcontent.chapter_content}}
     {% endautoescape %}
-    <a href="{% url 'learning_logs:look_chapter' article.id artcontents.id %}">上一章</a>
+    </span>
+    <a href="{% url 'learning_logs:look_chapter' article.id 5 %}">上一章</a>
 
 
 </div>
 <style type="text/css">
-
+span{font-size:19px}
 	
 </style>
 

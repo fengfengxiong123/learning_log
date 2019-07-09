@@ -104,11 +104,14 @@ def new_chapter(request,article_id):
 from django.db.models.aggregates import Count
 def look_chapter(request,art_id,chap_id):
 	"""查看具体章节"""
-	artcontents=ArtContent.objects.get(id=chap_id)
+	artcontent=ArtContent.objects.get(id=chap_id)
 	article=Article.objects.get(id=art_id)
-	allartcontents=ArtContent.objects.annotate(num_article=Count('id'))
-	artcontent_list=list(allartcontents)
-	context={'artcontents':artcontents,'article':article}
+
+	num=ArtContent.objects.filter(article_id=art_id).values('id','chapter_name')
+	print(num)
+
+
+	context={'artcontent':artcontent,'article':article}
 	return render(request,'learning_logs/look_chapter.html',context)
 
 @login_required
@@ -127,7 +130,7 @@ def edit_chapter(request,article_id,chapter_id):
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect(reverse('learning_logs:look_chapter',
-				args=[artcontent.id]))
+				args=[article.id,artcontent.id]))
 	context ={'artcontent':artcontent,'form':form,'article':article}
 	
 	
