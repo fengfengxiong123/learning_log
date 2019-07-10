@@ -18,7 +18,7 @@
     {{artcontent.chapter_content}}
     {% endautoescape %}
     </span>
-    <a href="{% url 'learning_logs:look_chapter' article.id 5 %}">上一章</a>
+    <a href="{% url 'learning_logs:look_chapter' article.id obj.id %}">{{ obj.chapter_name }}</a>
 
 
 </div>

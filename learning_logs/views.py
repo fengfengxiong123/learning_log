@@ -107,12 +107,12 @@ def look_chapter(request,art_id,chap_id):
 	artcontent=ArtContent.objects.get(id=chap_id)
 	article=Article.objects.get(id=art_id)
 
-	num=ArtContent.objects.filter(article_id=art_id).values('id','chapter_name')
-	print(num)
-
-
-	context={'artcontent':artcontent,'article':article}
-	return render(request,'learning_logs/look_chapter.html',context)
+	if int(chap_id) <= 5:
+		obj=ArtContent.objects.filter(id__gt=chap_id,article_id=art_id).first()
+		context = {'artcontent': artcontent, 'article': article, 'obj': obj}
+		return render(request, 'learning_logs/look_chapter.html', context)
+	else:
+		return HttpResponseRedirect(reverse('learning_logs:index'))
 
 @login_required
 def edit_chapter(request,article_id,chapter_id):
