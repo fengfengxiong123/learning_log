@@ -18,7 +18,19 @@
     {{artcontent.chapter_content}}
     {% endautoescape %}
     </span>
-    <a href="{% url 'learning_logs:look_chapter' article.id obj.id %}">{{ obj.chapter_name }}</a>
+{% if next %}
+    {% if previous %}
+    <a href="{% url 'learning_logs:look_chapter' article.id previous.id %}">上一章</a>
+    {% else %}
+
+    {% endif %}
+    <a href="{% url 'learning_logs:look_chapter' article.id next.id %}">下一章</a>
+
+{% else %}
+    <a href="{% url 'learning_logs:look_chapter' article.id previous.id %}">上一章</a>
+    <a href="{% url 'learning_logs:article' article.id %}">返回列表</a>
+{% endif %}
+
 
 
 </div>

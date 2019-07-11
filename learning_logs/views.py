@@ -106,13 +106,12 @@ def look_chapter(request,art_id,chap_id):
 	"""查看具体章节"""
 	artcontent=ArtContent.objects.get(id=chap_id)
 	article=Article.objects.get(id=art_id)
+	# 上一章下一章
+	previous= ArtContent.objects.filter(id__lt=chap_id, article_id=art_id).order_by('-id').first()
+	next = ArtContent.objects.filter(id__gt=chap_id, article_id=art_id).order_by('id').first()
+	context = {'artcontent': artcontent, 'article': article, 'previous': previous,'next':next}
+	return render(request, 'learning_logs/look_chapter.html', context)
 
-	if int(chap_id) <= 5:
-		obj=ArtContent.objects.filter(id__gt=chap_id,article_id=art_id).first()
-		context = {'artcontent': artcontent, 'article': article, 'obj': obj}
-		return render(request, 'learning_logs/look_chapter.html', context)
-	else:
-		return HttpResponseRedirect(reverse('learning_logs:index'))
 
 @login_required
 def edit_chapter(request,article_id,chapter_id):
