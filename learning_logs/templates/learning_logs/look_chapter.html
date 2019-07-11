@@ -7,17 +7,18 @@
 
 <div class="container">
     <p>
-    <h5 class="text-center">{{ artcontent.chapter_name }}</h5>
-
-
-
-
+    <h3 class="text-center">{{ artcontent.chapter_name }}</h3>
+    {% if article.user_owner == request.user%}
+        <a href="{% url 'learning_logs:edit_chapter' article.id artcontent.id %}">修改</a>
+    {% endif %}
     </p>
+
     <span>
     {% autoescape off %}
     {{artcontent.chapter_content}}
     {% endautoescape %}
     </span>
+
 {% if next %}
     {% if previous %}
     <a href="{% url 'learning_logs:look_chapter' article.id previous.id %}">上一章</a>

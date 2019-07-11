@@ -98,7 +98,7 @@ DATABASES = {
         'NAME': 'll_db',
         'USERNAME': 'root',
         'PASSWORD': 'Liangfeng0504@',
-        
+
     }
 }
 
