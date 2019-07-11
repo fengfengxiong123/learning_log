@@ -104,8 +104,7 @@ def new_chapter(request,article_id):
 from django.db.models.aggregates import Count
 def look_chapter(request,art_id,chap_id):
 	"""查看具体章节"""
-	artcontent=ArtContent.objects.get(id=chap_id,article_id=art_id)
-
+	artcontent=ArtContent.objects.get(article_id=art_id,id=chap_id)
 	article=Article.objects.get(id=art_id)
 	# 上一章下一章
 	previous= ArtContent.objects.filter(id__lt=chap_id, article_id=art_id).order_by('-id').first()

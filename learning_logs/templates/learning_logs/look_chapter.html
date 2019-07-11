@@ -19,19 +19,19 @@
     {% endautoescape %}
     </span>
 
-{% if next %}
-    {% if previous %}
+
+{% if previous and next %}
     <a href="{% url 'learning_logs:look_chapter' article.id previous.id %}">上一章</a>
-    {% else %}
-
-    {% endif %}
     <a href="{% url 'learning_logs:look_chapter' article.id next.id %}">下一章</a>
-
-{% else %}
+{% elif not previous and not next%}
+    <a href="{% url 'learning_logs:article' article.id %}">返回列表</a>
+{% elif previous and not next%}
     <a href="{% url 'learning_logs:look_chapter' article.id previous.id %}">上一章</a>
     <a href="{% url 'learning_logs:article' article.id %}">返回列表</a>
+{% elif not previous and next %}
+    <a href="{% url 'learning_logs:article' article.id %}">返回列表</a>
+    <a href="{% url 'learning_logs:look_chapter' article.id next.id %}">下一章</a>
 {% endif %}
-
 
 
 </div>
