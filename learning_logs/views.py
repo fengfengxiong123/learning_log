@@ -12,7 +12,13 @@ from django.core.paginator import Paginator
 def index(request):
 	"""主页（文章列表页）"""
 	articles=Article.objects.order_by('art_add_date')
-	context={'articles':articles}
+
+	pre_four_articles=articles[0:4]
+	print(pre_four_articles)
+	surplus_articles=articles[4:]
+	print(surplus_articles)
+	print(bool(surplus_articles))
+	context={'articles':articles,'pre_four_articles':pre_four_articles,'surplus_articles':surplus_articles}
 	return render(request,'learning_logs/index.html',context)
 	# return render(request,'article/list.html',context)
 

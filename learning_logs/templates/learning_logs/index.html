@@ -7,49 +7,41 @@
 {% endblock header %}
 
 {% block content %}	
-<div class="container">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <p>
-                    <table class="table">
-                    {% if articles %}
-                    <thead>
-                        <tr>
-                          <th scope="col">文章名</th>
-                          <th scope="col">简介</th>
-                          <!-- <th scope="col">发布人</th> -->
-                          <th scope="col">作者</th>
-                          <!-- <th scope="col">状态</th> -->
-                          <!-- <th scope="col">类型</th> -->
-                          <!-- <th scope="col">添加日期</th> -->
-                        </tr>
-                     </thead>
-                    {% endif %}
-                    {% for article in articles %}
-                    <tbody>
-                        <tr>
-                          <th scope="row"><a href="{% url 'learning_logs:article' article.id %}">{{ article }}</a></th>
-                          <td>{{article.art_introduction}}</td>
-                          <!-- <td>{{article.user_owner}}</td> -->
-                          <td>{{article.art_author}}</td>
-                          <!-- <td>{{article.art_status}}</td> -->
-                          <!-- <td>{{article.art_type}}</td> -->
-                          <!-- <td>{{article.art_add_date}}</td> -->
-                        </tr>
-                    </tbody>
-                    {% empty %}
-                        <li>没有文章</li>
-                    {% endfor %}
-                </table>
-                </p>
-            </div>
+
+    <div >推荐：</div>
+    <div >
+    {%  for pre_four_article in pre_four_articles %}
+
+    <div class="two_row">
+        <div class="name_author_intr intr">简介：{{ pre_four_article.art_introduction }}</div>
+        <div class="name_author_intr line_num">名称：<a href="{% url 'learning_logs:article' pre_four_article.id %}">{{ pre_four_article.art_name }}</a></div>
+        <div class="name_author_intr line_num">作者：{{ pre_four_article.art_author }}</div>
+    </div>
+
+    {% endfor %}
+    </div>
+    <div >名著：</div>
+    <div>
+    {% if surplus_articles %}
+    {%  for surplus_article in surplus_articles %}
+        <div class="row_list">
+            <div class="row_list_half">名称：<a href="{% url 'learning_logs:article' surplus_article.id %}">{{ surplus_article.art_name }}</a></div>
+            <div class="row_list_half">作者：{{ surplus_article.art_author }}</div>
+
+{#            <div style='clear: both'></div>#}
+
         </div>
-        <div>
-            <h3>
-                <a href="{% url 'learning_logs:new_article' %}">发布</a>
-            </h3>
+    {% endfor %}
+    {% else %}
+        <div class="row_list">
+        没有内容
         </div>
-</div>
+    {% endif %}
+    </div>
+    <div class="create_publish">
+        <a href="{% url 'learning_logs:new_article' %}">创作发布</a>
+    </div>
+
 
 <div class="py-3 fixed-bottom bg2-white">
     <div class="container">
@@ -58,7 +50,53 @@
     </div>
 </div>
 <style type="text/css">
-    .bg2-white{background-color: rgba(255,255,255,0.1);}
+body{
+    background-color:#f9f9f9;
+}
+.bg2-white{background-color: rgba(255,255,255,0.1);}
+.name_author_intr{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.line_num{
+    -webkit-line-clamp: 1;
+    width: 80%;
+    padding: 1vmax 0 0 1vmax;
+}
+.intr{
+    padding: 1vmax 0 0 1vmax;
+}
+.two_row{
+    width: 48%;
+    {#height: 23vmax;#}
+    margin: 1vw 0 0 1%;
+    display: inline-block;
+    vertical-align:top;
+    background-color: white;
+    border-radius: 1vmax;
+}
+.row_list{
+    width: 98%;
+    margin: 1vw 0 0 1%;
+    border-radius: 1vmax;
+    overflow: hidden;
+}
+.row_list_half{
+    width:50%;
+    float: left;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.create_publish{
+    text-align: center;
+    margin-top: 2vmax;
+    font-size:x-large;
+}
+
 </style>
 
 {% endblock content %}
