@@ -8,19 +8,19 @@
 
 {% block content %}	
 
-    <div >推荐：</div>
+    <div class="recom_article">推荐：</div>
     <div >
     {%  for pre_four_article in pre_four_articles %}
 
     <div class="two_row">
-        <div class="name_author_intr intr">简介：{{ pre_four_article.art_introduction }}</div>
         <div class="name_author_intr line_num">名称：<a href="{% url 'learning_logs:article' pre_four_article.id %}">{{ pre_four_article.art_name }}</a></div>
         <div class="name_author_intr line_num">作者：{{ pre_four_article.art_author }}</div>
+        <div class="name_author_intr intr">简介：{{ pre_four_article.art_introduction }}</div>
     </div>
 
     {% endfor %}
     </div>
-    <div >名著：</div>
+    <div class="recom_article">名著：</div>
     <div>
     {% if surplus_articles %}
     {%  for surplus_article in surplus_articles %}
@@ -79,7 +79,7 @@ body{
 }
 .row_list{
     width: 98%;
-    margin: 1vw 0 0 1%;
+    margin: 1vw 0 0 2%;
     border-radius: 1vmax;
     overflow: hidden;
 }
@@ -96,7 +96,9 @@ body{
     margin-top: 2vmax;
     font-size:x-large;
 }
-
+.recom_article{
+    margin: 1vw 0 0 1%;
+}
 </style>
 
 {% endblock content %}
