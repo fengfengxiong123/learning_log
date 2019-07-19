@@ -1,0 +1,23 @@
+﻿cmd  ：sysdm.cpl 环境变量快捷键
+
+pip命令
+pip install djangorestframework #安装rest
+pip install markdown #安装markdown
+pip freeze > requirements.txt #安装的依赖
+pip install django-cors-headers #在Django层注入header,之后可以在dist文件运行npm run dev命令
+
+node.js  &vue.js
+https://nodejs.org/en/
+npm config set -g registry https://registry.npm.taobao.org  #npm 淘宝镜像
+npm install -g webpack  #安装webpack
+vue-init webpack frontend #创建一个叫frontend的前端项目
+cd frontend #进入
+npm install --save-dev #更新开发环境
+npm run build	#打包到dist
+npm run dev 	#运行
+npm install webpack@4.0.0 -g #全局安装
+资料显示，fsevents是mac端使用，window可忽略。
+npm install axios --save-dev
+npm install vuex --save 	#安装vuex
+npm install jquery --save
+npm install bootstrap@4 --save

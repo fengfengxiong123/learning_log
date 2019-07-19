@@ -1,0 +1,18 @@
+登录数据库：
+mysql -u root -p
+创建数据库：
+CREATE DATABASE text1;
+删除数据库：
+DROP DATABASE 库名;
+删除表：
+DROP TABLE 表名;
+显示数据库：
+SHOW DATABASES;
+使用数据库：
+USE 库名;
+备份数据库：
+/usr/bin/mysqldump -u root -p ll_db> /home/back_up.sql
+恢复数据库：
+mysql -u root -p oooo< /home/xxxx.sql
+Windows恢复数据：
+mysql -u root -p ll_db < C:\Users\Administrator\Desktop\website\back_up.sql

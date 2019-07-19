@@ -1,0 +1,14 @@
+﻿git commit -m 
+git add .
+git branch test
+git log --oneline --decorate
+git checkout test
+git init 
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/fengfengxiong123/learning_project.git
+git push -u origin master
+git reset HEAD  #清除缓存区内容
+git reset --hard  #放弃本地修改
+git pull #直接覆盖
+git stash 备份当前工作区的内容

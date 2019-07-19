@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'w1vfs=ht*gho*f!#sey8e@x+%#k2kl9qlj=oiw)wo5x1smd+k!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# DEBUG = True
+# DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -96,7 +96,8 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': 3306,
         'NAME': 'll_db',
-        'USERNAME': 'root',
+        'USER': 'root',
+        #'USER': 'root',
         'PASSWORD': 'Liangfeng0504@',
 
     }
