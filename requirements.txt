@@ -7,7 +7,7 @@ colorama==0.4.1
 Django==2.1.4
 django-cors-headers==3.0.2
 django-tinymce==2.8.0
-djangorestframework==3.9.4
+djangorestframework==3.11.2
 DjangoUeditor==1.8.143
 docutils==0.14
 idna==2.8
